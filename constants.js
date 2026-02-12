@@ -1,0 +1,1 @@
+export const INIT_CMD = "FD FC FB FA 02 00 61 00 04 03 02 01";
