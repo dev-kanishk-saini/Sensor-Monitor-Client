@@ -179,6 +179,20 @@ export default function MotionChart({ motionthreshold }) {
       chartRef.current.update();
     });
 
+
+    socket.on("sensitivityUpdated", (data) => {
+      const thresholds = data.MotionSensitivity
+        ?.slice(0, 8)
+        .map(sanitizeVal);
+
+      chartRef.current.data.datasets[1].data = thresholds;
+      chartRef.current.update();
+    });
+
+
+
+
+
       // chartRef.current.data.datasets[1].data = motionthreshold;
       // chartRef.current.update();
     return () => {

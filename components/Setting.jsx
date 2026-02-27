@@ -5,6 +5,8 @@ import StartconfigButton from "./StartconfigButton";
 import StopconfigButton from "./StopconfigButton";
 import Loader from "./Loader";
 import { getSocket } from "@/lib/socket";
+import MovingSignalStrength from "@/components/MovingSingnalStrength";
+import StaticSignalStrength from "@/components/StaticSignalStrength";
 
 
 
@@ -105,6 +107,28 @@ export default function Setting(){
          </div>
          <div className="h-[320px] w-full bg-white border border-black text-center rounded-lg p-4">
             <h1 className="font-semibold text-black text-lg ">Rest Settings</h1>
+             <div className="flex justify-center items-center gap-4 mt-8">
+          <h2 className="text-sm font-bold text-center text-black mb-1">
+           Moving<br>
+           </br>
+           Signal
+           <br>
+           </br>
+           Strength
+          </h2>
+         <MovingSignalStrength/>
+        </div>
+        <div className="flex justify-center items-center gap-4 mt-8">
+          <h2 className="text-sm font-bold text-center text-black mb-1">
+           Static<br>
+           </br>
+           Signal
+           <br>
+           </br>
+           Strength
+          </h2>
+         <StaticSignalStrength/>
+        </div>
          </div>
     </div>
 );

@@ -145,9 +145,10 @@ export default function StaticChart({ staticthreshold }) {
     };
   }, []);
 
+  const socket = getSocket();
   /* ---------------- SOCKET UPDATES ---------------- */
   useEffect(() => {
-    const socket = getSocket();
+    
     if (!chartRef.current) return;
 
     socket.on("sensorData", (payload) => {
@@ -179,14 +180,23 @@ export default function StaticChart({ staticthreshold }) {
       chartRef.current.data.datasets[1].data = thresholds;
       chartRef.current.update();
     });
-
-      //     chartRef.current.data.datasets[1].data = staticthreshold;
+    //     chartRef.current.data.datasets[1].data = staticthreshold;
       // chartRef.current.update();
     return () => {
       socket.off("sensorData");
       socket.off("configurationData");
     };
   }, []);
+
+   socket.on("sensitivityUpdated", (data) => {
+      const thresholds = data.StaticSensitivity
+        ?.slice(0, 8)
+        .map(sanitizeVal);
+
+      chartRef.current.data.datasets[1].data = thresholds;
+      chartRef.current.update();
+    });
+
 
   return (
     <div className="h-[340px] w-full bg-white border border-black rounded-lg p-4">
