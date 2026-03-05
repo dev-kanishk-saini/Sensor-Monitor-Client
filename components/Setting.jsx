@@ -49,6 +49,15 @@ export default function Setting(){
           //alert("⏸ Stopping Configuration Mode");
           setconfig(false);
     }
+
+      const autoConfig = () => {
+         const socket = getSocket();
+          socket.emit("autoconfig");
+          console.log("Auto Configuration Triggered");
+             
+    }
+
+
     return (
     <div className="flex gap-2 ">
         <div className="h-[320px] w-full bg-white border border-black text-center  rounded-lg p-4 ">
@@ -92,9 +101,9 @@ export default function Setting(){
             </button>
         </div>
          <div className="h-[320px] w-full bg-white border border-black text-center rounded-lg p-4">
-            <h1 className="font-semibold text-black text-lg ">Configure</h1>
+            <h1 className="font-semibold text-black text-lg ">Manual Configure</h1>
 
-            <div className="flex justify-center items-center gap-4 mt-8">
+            <div className="flex justify-center items-center gap-4 mt-8 mb-8">
                 <div className="flex justify-center items-center border border-black gap-5 rounded-full p-2">
                 <StartconfigButton onClick={startConfig}
                 disabled={config} /> 
@@ -102,6 +111,13 @@ export default function Setting(){
                 <StopconfigButton onClick={stopConfig}
                 disabled={!config}/>
                 </div>
+                
+            </div>
+
+            <h1 className="font-semibold text-black text-lg ">Auto Configure</h1>
+
+            <div className="flex justify-center items-center  mt-8">
+                <button className="bg-blue-500 text-white px-4 py-2 rounded-full hover:opacity-90" onClick={autoConfig}>Auto Configure</button>
                 
             </div>
          </div>

@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 import { getSocket } from "@/lib/socket";
 import { ResetMaxValue } from "@/components/ResetMaxValue";
 import { ResetZoom } from "@/components/ResetZoom";
+import { initSocketHandler } from "@/lib/socketHandler";
 
 
 
@@ -15,10 +16,15 @@ import { ResetZoom } from "@/components/ResetZoom";
  
 
 export default function RealtimePage() {
-  const resetZoomTrigger = Date.now();
+  // const resetZoomTrigger = Date.now();
   //const [motionthreshold , setMotionthreshold] = useState([0,0,0,0,0,0,0,0]);
  // const [staticthreshold , setStaticthreshold] = useState([0,0,0,0,0,0,0,0]);
    
+  useEffect(() => {
+
+    initSocketHandler();
+
+  }, []);
   
 
 
